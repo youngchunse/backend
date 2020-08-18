@@ -1,0 +1,69 @@
+version: 2.1
+
+references:
+
+base_image: &base_image
+  hashicorp/terraform:light
+
+working_directory: &working_directory
+  ~/app
+
+default_config: &default_config
+  docker:
+    - image: *base_image
+  working_directory: *working_directory
+
+repo_cache_key: &repo_cache_key v1-repo-{{ .Branch }}-{{ .Revision }}
+
+restore_repo: &restore_repo
+  restore_cache:
+    key: *repo_cache_key
+
+save_repo: &save_repo
+  save_cache:
+    key: *repo_cache_key
+    paths:
+      - *working_directory
+
+terraform_init: &terraform_init
+  run:
+    name: terraform init
+    command: |
+      cd app
+      terraform init
+
+jobs:
+  plan:
+    <<: *default_config
+    steps:
+      - checkout
+      - *terraform_init
+      - *save_repo
+      - *restore_repo
+      - run:
+          name: terraform plan
+          command: |
+            pwd
+            cd app
+            ls -la
+            terraform plan -input=false -var-file=terraform.tfvars
+  apply:
+    <<: *default_config
+    steps:
+      - *restore_repo
+      - run:
+          command: |
+            cd app
+            terraform apply --auto-approve -var-file=terraform.tfvars
+
+  version: 2
+  Example_Workflow:
+    jobs:
+      - plan
+      - hold-apply:
+          type: approval
+          requires:
+            - plan
+      - apply:
+          requires:
+            - hold-apply

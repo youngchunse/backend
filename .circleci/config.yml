@@ -56,6 +56,7 @@ jobs:
             cd app
             terraform apply --auto-approve -var-file=terraform.tfvars
 
+workflows:
   version: 2
   terraform_deploy:
     jobs:

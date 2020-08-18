@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 module "s3" {
-  source         = "./s3"
+  source         = "../s3"
   bucket         = var.bucket
   acl            = var.acl
   versioning     = var.versioning

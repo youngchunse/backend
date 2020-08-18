@@ -57,7 +57,7 @@ jobs:
             terraform apply --auto-approve -var-file=terraform.tfvars
 
   version: 2
-  Example_Workflow:
+  terraform_deploy:
     jobs:
       - plan
       - hold-apply:

@@ -43,9 +43,7 @@ jobs:
       - run:
           name: terraform plan
           command: |
-            pwd
             cd app
-            ls -la
             terraform plan -input=false -var-file=terraform.tfvars
   apply:
     <<: *default_config

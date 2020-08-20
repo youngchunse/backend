@@ -1,12 +1,12 @@
 version: 2.1
 
 references:
-
+  
 base_image: &base_image
   hashicorp/terraform:light
 
 working_directory: &working_directory
-  ~/app
+  ~/Final-Project
 
 default_config: &default_config
   docker:

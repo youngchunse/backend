@@ -1,11 +1,11 @@
 region         = "us-east-1"
 
-bucket         = "terraform-state-dev-application"
+bucket         = "terraform-remote-state-storage-s3"
 acl            = "private"
 versioning     = true
 lifecycle_rule = true
 
-dynamodb_name  = "terraform-state-dev-application-lock"
+dynamodb_name  = "terraform-state-lock-dynamo"
 read_capacity  = 5
 write_capacity = 5
 hash_key       = "LockID"

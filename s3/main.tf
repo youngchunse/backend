@@ -1,4 +1,4 @@
-resource "aws_s3_bucket" "bucket" {
+resource "aws_s3_bucket" "terraform_state_storage_s3" {
   bucket = var.bucket
   acl    = var.acl
 
@@ -25,13 +25,16 @@ resource "aws_s3_bucket" "bucket" {
   }
 }
 
-resource "aws_dynamodb_table" "terraform_state_lock" {
+resource "aws_dynamodb_table" "dynamodb_terraform_state_lock" {
   name           = var.dynamodb_name
   read_capacity  = var.read_capacity
   write_capacity = var.write_capacity
   hash_key       = var.hash_key
+
   attribute {
     name = var.attribute_name
     type = var.attribute_type
   }
+  
+  depends_on = ["aws_s3_bucket.terraform_state_storage_s3"]
 }

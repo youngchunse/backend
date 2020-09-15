@@ -24,7 +24,7 @@ Set values for these 3 variables:
 
 ## Usage
 
-In order to use the new backend for your Terraform project, just add the following snippet to a `*.tf` file. Replace the value of `key` with your own logical grouping for the tfstate files
+In order to use the new backend for your Terraform project, just add the following snippet to a `*.tf` file. Replace the value of `key` with your own logical grouping for the tfstate files. Bucket name must be unique or else an error message will appear.
 
     terraform {
       backend "s3" {

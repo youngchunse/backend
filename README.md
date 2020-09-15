@@ -9,11 +9,17 @@ Edit the following items in `app/main.tf`:
 To launch the backend, run:
     * `terraform init`
     * `terraform plan`
-    * And, when ready: `terraform apply`
-    * When finished: `terraform destroy`
+    * When ready: `terraform apply`
+    * And, When finished: `terraform destroy`
 
-## CICD Pipeline
+## CircleCI Pipeline
 
+1. Set your credentials as Environment Variables on CirleCI IU. Under Project Setting > Environment Variables > Add Variable.
+
+Set values for these 3 variables:
+    * `AWS_ACCESS_KEY_ID`
+    * `AWS_SECRET_ACCESS_KEY`
+    * `REGION`
 
 
 ## Usage

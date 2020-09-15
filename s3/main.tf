@@ -35,6 +35,6 @@ resource "aws_dynamodb_table" "dynamodb_terraform_state_lock" {
     name = var.attribute_name
     type = var.attribute_type
   }
-  
-  depends_on = ["aws_s3_bucket.terraform_state_storage_s3"]
+
+  depends_on = [aws_s3_bucket.terraform_state_storage_s3]
 }

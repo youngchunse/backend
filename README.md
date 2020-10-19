@@ -1,4 +1,4 @@
-# S3 Terraform Backend
+# S3 Terraform State Backend
 S3 bucket and DynamoDB lock table for Terraform State Backend.
 
 ## Setup
